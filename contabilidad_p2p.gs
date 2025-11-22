@@ -79,7 +79,7 @@ function procesarCorreosAirtm() {
       // ===== EXPORTAR PDF =====
       try {
         const nombrePDF = `${fechaEnvio}_${asunto}_${idTransaccion}`.replace(/[^\w\s.-]/g, "_");
-        guardarCorreoComoPDF(msg, nombrePDF);
+        guardarCorreoComoPDFConImagenes(msg, nombrePDF);
         Logger.log("PDF guardado: " + nombrePDF);
       } catch (e) {
         Logger.log("Error exportando PDF: " + e);
@@ -134,28 +134,122 @@ function arrastrarFormulas(hoja, filaDestino, columnas) {
 // ===== EXPORTAR PDF =====
 //
 
-function guardarCorreoComoPDF(msg, nombrePDF) {
+function guardarCorreoComoPDFConImagenes(msg, nombrePDF) {
   const carpetaDestinoId = "1aSve6SdjM5dp044CPWP8mgcMFSmOUTMa";
   const carpeta = DriveApp.getFolderById(carpetaDestinoId);
 
-  // Construimos HTML para exportar el correo
-  const html = `
-    <html>
-      <body style="font-family: Arial; font-size: 12px;">
-        <h2>${msg.getSubject()}</h2>
-        <p><b>Fecha:</b> ${msg.getDate()}</p>
-        <hr>
-        ${msg.getBody()}
-      </body>
-    </html>
-  `;
+  // Obtener HTML original del mensaje (si no hay, usamos body plano)
+  let html = "";
+  try {
+    html = msg.getBody() || msg.getPlainBody() || "";
+  } catch (e) {
+    html = msg.getPlainBody() || "";
+  }
 
-  // Convertimos el HTML a un blob
-  const blob = Utilities.newBlob(html, "text/html", "temp.html");
+  // 1) Reemplazar imágenes inline (cid:) usando attachments inline
+  try {
+    const atts = msg.getAttachments({ includeInlineImages: true });
+    if (atts && atts.length > 0) {
+      atts.forEach(att => {
+        try {
+          const ct = att.getContentType();
+          if (!ct || !ct.match(/^image\//i)) return; // solo imágenes
 
-  // Convertimos ese blob a PDF
-  const pdf = blob.getAs("application/pdf").setName(nombrePDF + ".pdf");
+          // Intentar obtener contentId si existe (varía según implementación)
+          let cid = "";
+          try { cid = att.getContentId(); } catch (e) { cid = ""; }
 
-  // Guardamos el PDF en Drive
-  carpeta.createFile(pdf);
+          // Crear data URI
+          const bytes = att.getBytes();
+          const b64 = Utilities.base64Encode(bytes);
+          const dataUri = "data:" + ct + ";base64," + b64;
+
+          // Reemplazar referencias por CID y por nombre en el HTML
+          if (cid) {
+            // src="cid:XYZ" o src='cid:XYZ'
+            const reCid = new RegExp('(["\'])cid:' + escapeRegExp(cid) + '\\1', 'gi');
+            html = html.replace(reCid, '"' + dataUri + '"');
+            // también sin comillas
+            html = html.replace(new RegExp('cid:' + escapeRegExp(cid), 'gi'), dataUri);
+          }
+
+          // Reemplazar por nombre de archivo también (por si lo referencia así)
+          const name = att.getName();
+          if (name) {
+            const reName = new RegExp('(["\'])([^"\']*' + escapeRegExp(name) + ')[\\"\\\']', 'gi');
+            html = html.replace(reName, '"' + dataUri + '"');
+            html = html.replace(new RegExp(escapeRegExp(name), 'gi'), dataUri);
+          }
+
+        } catch (e) {
+          // ignorar una attachment fallida y seguir
+          Logger.log("Error procesando attachment inline: " + e);
+        }
+      });
+    }
+  } catch (e) {
+    Logger.log("No se pudieron obtener attachments inline: " + e);
+  }
+
+  // 2) Buscar <img src="http..."> y tratar de descargar y reemplazar por data URI
+  try {
+    // encontrar todas las URLs de imagen en src="" o src=''
+    const imgUrlRegex = /<img[^>]+src=(?:'|")([^'">]+)(?:'|")[^>]*>/gi;
+    let match;
+    const urlsProcesadas = {};
+    while ((match = imgUrlRegex.exec(html)) !== null) {
+      const src = match[1];
+      // ignorar data: ya embebidas
+      if (!src || src.trim().toLowerCase().startsWith('data:')) continue;
+      // evitar procesar la misma url muchas veces
+      if (urlsProcesadas[src]) continue;
+      urlsProcesadas[src] = true;
+
+      try {
+        // Intento de descarga (timeout corto)
+        const resp = UrlFetchApp.fetch(src, { muteHttpExceptions: true, followRedirects: true, validateHttpsCertificates: true, timeout: 10000 });
+        if (resp.getResponseCode() === 200) {
+          const contentType = resp.getHeaders()['Content-Type'] || resp.getHeaders()['content-type'] || '';
+          if (contentType && contentType.toLowerCase().indexOf('image/') === 0) {
+            const bytes = resp.getContent();
+            const b64 = Utilities.base64Encode(bytes);
+            const dataUri = 'data:' + contentType.split(';')[0] + ';base64,' + b64;
+            // Reemplazar todas las ocurrencias de la URL por dataUri
+            const escUrl = escapeRegExp(src);
+            html = html.replace(new RegExp(escUrl, 'g'), dataUri);
+          } else {
+            // no es imagen, lo dejamos
+            Logger.log('URL no es imagen o tipo desconocido: ' + src);
+          }
+        } else {
+          Logger.log('No se pudo descargar imagen (' + resp.getResponseCode() + '): ' + src);
+        }
+      } catch (e) {
+        Logger.log('Error descargando imagen externa: ' + src + " -> " + e);
+      }
+    }
+  } catch (e) {
+    Logger.log("Error procesando imágenes externas: " + e);
+  }
+
+  // 3) Generar PDF desde HTML ya con imágenes embebidas
+  try {
+    // Si el HTML viene sin <html> completo, envolvemos
+    if (!/^<!doctype/i.test(html) && html.indexOf('<html') === -1) {
+      html = '<!doctype html><html><head><meta charset="utf-8"></head><body>' + html + '</body></html>';
+    }
+
+    const blob = Utilities.newBlob(html, 'text/html', 'temp.html');
+    const pdf = blob.getAs('application/pdf').setName(nombrePDF + '.pdf');
+    carpeta.createFile(pdf);
+  } catch (e) {
+    Logger.log("Error generando PDF: " + e);
+    throw e;
+  }
+}
+
+
+// Helper: escapar texto para usar en RegExp
+function escapeRegExp(string) {
+  return String(string).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
