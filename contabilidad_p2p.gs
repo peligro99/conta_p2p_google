@@ -6,7 +6,7 @@ function procesarCorreosAirtm() {
 
   const hoja = SpreadsheetApp.openById(SHEET_ID).getSheetByName(SHEET_NAME);
 
-  // Mejor filtro: retiro o agregar + completado
+  // Filtro mejorado
   const query = `from:${remitente} subject:completado ("retiro" OR "agregar" OR "agregaste" OR "agregando") -label:${etiquetaProcesado}`;
   const hilos = GmailApp.search(query);
 
@@ -19,6 +19,7 @@ function procesarCorreosAirtm() {
 
   hilos.forEach(hilo => {
     const mensajes = hilo.getMessages();
+
     mensajes.forEach(msg => {
 
       const asunto = msg.getSubject().toLowerCase();
@@ -46,7 +47,7 @@ function procesarCorreosAirtm() {
         return;
       }
 
-      // ===== INSERTAR NUEVA FILA CORRECTAMENTE =====
+      // ===== INSERTAR NUEVA FILA =====
       const nuevaFila = hoja.getLastRow() + 1;
 
       hoja.getRange(nuevaFila, 1).setValue(new Date());
@@ -65,7 +66,6 @@ function procesarCorreosAirtm() {
         const valor = extraerNumero(fondosRecibidos);
         hoja.getRange(nuevaFila, 4).setValue(valor); // Columna D
 
-        // estas columnas sí llevan fórmula
         arrastrarFormulas(hoja, nuevaFila, [5, 6, 8, 10, 11, 12]);
       }
 
@@ -76,15 +76,25 @@ function procesarCorreosAirtm() {
         arrastrarFormulas(hoja, nuevaFila, [5, 6, 8, 10, 11, 12]);
       }
 
+      // ===== EXPORTAR PDF =====
+      try {
+        const nombrePDF = `${fechaEnvio}_${asunto}_${idTransaccion}`.replace(/[^\w\s.-]/g, "_");
+        guardarCorreoComoPDF(msg, nombrePDF);
+        Logger.log("PDF guardado: " + nombrePDF);
+      } catch (e) {
+        Logger.log("Error exportando PDF: " + e);
+      }
+
+      // ===== ETIQUETAR COMO PROCESADO =====
       hilo.addLabel(etiqueta);
-      
+
     });
   });
 }
 
-
-// ==== FUNCIONES AUXILIARES ====
-
+//
+// ===== FUNCIONES AUXILIARES =====
+//
 
 function extraerDato(texto, regex) {
   const match = texto.match(regex);
@@ -118,4 +128,34 @@ function arrastrarFormulas(hoja, filaDestino, columnas) {
     const f = hoja.getRange(filaOrigen, col).getFormula();
     if (f) hoja.getRange(filaDestino, col).setFormula(f);
   });
+}
+
+//
+// ===== EXPORTAR PDF =====
+//
+
+function guardarCorreoComoPDF(msg, nombrePDF) {
+  const carpetaDestinoId = "1aSve6SdjM5dp044CPWP8mgcMFSmOUTMa";
+  const carpeta = DriveApp.getFolderById(carpetaDestinoId);
+
+  // Construimos HTML para exportar el correo
+  const html = `
+    <html>
+      <body style="font-family: Arial; font-size: 12px;">
+        <h2>${msg.getSubject()}</h2>
+        <p><b>Fecha:</b> ${msg.getDate()}</p>
+        <hr>
+        ${msg.getBody()}
+      </body>
+    </html>
+  `;
+
+  // Convertimos el HTML a un blob
+  const blob = Utilities.newBlob(html, "text/html", "temp.html");
+
+  // Convertimos ese blob a PDF
+  const pdf = blob.getAs("application/pdf").setName(nombrePDF + ".pdf");
+
+  // Guardamos el PDF en Drive
+  carpeta.createFile(pdf);
 }
