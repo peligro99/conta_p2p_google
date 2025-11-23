@@ -1,0 +1,45 @@
+1:43:43 a.m.	Información	URL no es imagen o tipo desconocido: https://kanto-us-west-2-private-file-manager-shaymin.s3.us-west-2.amazonaws.com/shaymin/6f28c361-0460-4488-a9f0-15145b311f1c/6f28c361-0460-4488-a9f0-15145b311f1c-avatar.jpeg?AWSAccessKeyId=AKIATHBKT3IB42P7VYGB&Expires=1764455183&Signature=zAQhl6erTUaOFId1dfK8CWT7nYA%3D
+1:43:46 a.m.	Información	PDF guardado: 20251122_paysera eur_CFD8TA4D77GVAB3D.pdf
+1:43:47 a.m.	Información	URL no es imagen o tipo desconocido: https://kanto-us-west-2-private-file-manager-shaymin.s3.us-west-2.amazonaws.com/shaymin/12a1afda-3cf1-4c05-9979-18c76308f2b8/12a1afda-3cf1-4c05-9979-18c76308f2b8-avatar.jpeg?AWSAccessKeyId=AKIATHBKT3IB42P7VYGB&Expires=1764440298&Signature=c6LuCssN9yGsO05NUdRp%2Flem4io%3D
+1:43:50 a.m.	Información	PDF guardado: 20251122_colombia davivienda_DB6CJR4339ME84C0.pdf
+1:43:51 a.m.	Información	URL no es imagen o tipo desconocido: https://kanto-us-west-2-private-file-manager-shaymin.s3.us-west-2.amazonaws.com/shaymin/1018164b-6db3-421a-a47a-3d5e3182c691/1018164b-6db3-421a-a47a-3d5e3182c691-avatar.png?AWSAccessKeyId=AKIATHBKT3IB42P7VYGB&Expires=1764438392&Signature=NhDvjUo5jLyaWQ91F3IboBt%2Bh48%3D
+1:43:54 a.m.	Información	PDF guardado: 20251122_facebank international_F240YM4881UK8716.pdf
+1:43:54 a.m.	Información	Correo sin datos reconocibles, omitido. ASUNTO: "agregar banco de luxemburgo completado"
+1:43:55 a.m.	Información	URL no es imagen o tipo desconocido: https://kanto-us-west-2-private-file-manager-shaymin.s3.us-west-2.amazonaws.com/shaymin/b49bf1be-b9a6-4b50-a4ca-1ab88abb306e/b49bf1be-b9a6-4b50-a4ca-1ab88abb306e-avatar.jpeg?AWSAccessKeyId=AKIATHBKT3IB42P7VYGB&Expires=1764341274&Signature=0A50aHdz8crUHU2DMTPdmQxgIjo%3D
+1:43:57 a.m.	Información	PDF guardado: 20251121_facebank international_691AGB4C3FFW901B.pdf
+1:43:58 a.m.	Información	Correo sin datos reconocibles, omitido. ASUNTO: "agregar sepa completado"
+1:43:59 a.m.	Información	No se pudo descargar imagen (403): https://kanto-us-west-2-private-file-manager-shaymin.s3.us-west-2.amazonaws.com/shaymin/716fabaf-c969-4436-832f-cc0341a5c921/716fabaf-c969-4436-832f-cc0341a5c921-avatar.jpeg?AWSAccessKeyId=AKIATHBKT3IB42P7VYGB&Expires=1763871210&Signature=f4%2BtlOeDLyU6EShCmDwnHzcbjjI%3D
+1:44:02 a.m.	Información	PDF guardado: 20251115_colombia bancolombia_EDB0YE4F56PG9405.pdf
+1:44:03 a.m.	Información	No se pudo descargar imagen (403): https://kanto-us-west-2-private-file-manager-shaymin.s3.us-west-2.amazonaws.com/shaymin/f6d02cd9-1a06-44f5-a6aa-e8e3b9698fda/f6d02cd9-1a06-44f5-a6aa-e8e3b9698fda-avatar.jpeg?AWSAccessKeyId=AKIATHBKT3IB42P7VYGB&Expires=1763601163&Signature=eErZl2QUYcS5dwucBsMz88ee%2FI8%3D
+1:44:06 a.m.	Información	PDF guardado: 20251112_colombia bancolombia_5A2BKW4A37VEB606.pdf
+1:44:09 a.m.	Información	PDF guardado: 20251109_colombia bancolombia_AE1EGC4FF2NR9656.pdf
+1:44:10 a.m.	Información	No se pudo descargar imagen (403): https://kanto-us-west-2-private-file-manager-shaymin.s3.us-west-2.amazonaws.com/shaymin/3742229e-a7a8-4ac6-9e62-91afbae7129e/3742229e-a7a8-4ac6-9e62-91afbae7129e-avatar.jpeg?AWSAccessKeyId=AKIATHBKT3IB42P7VYGB&Expires=1762472032&Signature=r6rkcSA7a%2BeO%2FKCMwfkRlbxy0ao%3D
+1:44:12 a.m.	Información	PDF guardado: 20251030_colombia bancolombia_5CACCG4A84MWA7C0.pdf
+1:44:16 a.m.	Información	PDF guardado: 20251030_colombia bancolombia_50B6GW4E8FTM8FE0.pdf
+1:44:16 a.m.	Información	Correo sin datos reconocibles, omitido. ASUNTO: "agregar pipol pay completado"
+1:44:19 a.m.	Información	PDF guardado: 20251017_wise eur_E931FW417DVH9CB5.pdf
+1:44:21 a.m.	Información	No se pudo descargar imagen (403): https://kanto-us-west-2-private-file-manager-shaymin.s3.us-west-2.amazonaws.com/shaymin/5c1bda6c-a359-43ac-808c-dae7282a35ee/5c1bda6c-a359-43ac-808c-dae7282a35ee-avatar.jpeg?AWSAccessKeyId=AKIATHBKT3IB42P7VYGB&Expires=1761340482&Signature=O5z9CfU5Gho7dxjCFOQYLNxBcYQ%3D
+1:44:23 a.m.	Información	PDF guardado: 20251017_facebank international_3954YH4C76VXA0BD.pdf
+1:44:23 a.m.	Información	Correo sin datos reconocibles, omitido. ASUNTO: "agregar banco de bulgaria (eur) completado"
+1:44:26 a.m.	Información	PDF guardado: 20251009_pipol pay_147FFJ41EEEJ9C95.pdf
+1:44:28 a.m.	Información	No se pudo descargar imagen (403): https://kanto-us-west-2-private-file-manager-shaymin.s3.us-west-2.amazonaws.com/shaymin/3ca587a6-a348-4d53-ab90-afa3852164ac/3ca587a6-a348-4d53-ab90-afa3852164ac-avatar.jpeg?AWSAccessKeyId=AKIATHBKT3IB42P7VYGB&Expires=1760587058&Signature=2AZtmAoh4kAq1t9ZULutfB2EJ08%3D
+1:44:30 a.m.	Información	PDF guardado: 20251008_pipol pay_7731UK43B2VF9A50.pdf
+1:44:31 a.m.	Información	No se pudo descargar imagen (403): https://kanto-us-west-2-private-file-manager-shaymin.s3.us-west-2.amazonaws.com/shaymin/05526628-bfd2-4173-9510-afbe58cd0fb9/05526628-bfd2-4173-9510-afbe58cd0fb9-avatar.jpeg?AWSAccessKeyId=AKIATHBKT3IB42P7VYGB&Expires=1760536240&Signature=BXDcZvqVwW5XQ0lG4HcfgufMSlo%3D
+1:44:34 a.m.	Información	PDF guardado: 20251008_pipol pay_8E02MU4795KNA67A.pdf
+1:44:35 a.m.	Información	No se pudo descargar imagen (403): https://kanto-us-west-2-private-file-manager-shaymin.s3.us-west-2.amazonaws.com/shaymin/05526628-bfd2-4173-9510-afbe58cd0fb9/05526628-bfd2-4173-9510-afbe58cd0fb9-avatar.jpeg?AWSAccessKeyId=AKIATHBKT3IB42P7VYGB&Expires=1760374192&Signature=v9Ip3rKKxixuqBbs7rOXmw5UdHc%3D
+1:44:37 a.m.	Información	PDF guardado: 20251006_pipol pay_44B6PQ4F88EF8307.pdf
+1:44:39 a.m.	Información	No se pudo descargar imagen (403): https://kanto-us-west-2-private-file-manager-shaymin.s3.us-west-2.amazonaws.com/shaymin/ec731e22-cea4-4fd5-9e7f-5c71433a29e7/ec731e22-cea4-4fd5-9e7f-5c71433a29e7-avatar.jpeg?AWSAccessKeyId=AKIATHBKT3IB42P7VYGB&Expires=1760387247&Signature=FY6NnYx%2FdABw7Wj7WGmLlxAurnI%3D
+1:44:41 a.m.	Información	PDF guardado: 20251006_pipol pay_C85ACQ459CAWA4E7.pdf
+1:44:43 a.m.	Información	No se pudo descargar imagen (403): https://kanto-us-west-2-private-file-manager-shaymin.s3.us-west-2.amazonaws.com/shaymin/415aa985-2436-4f4e-85f2-61cab00c5efb/415aa985-2436-4f4e-85f2-61cab00c5efb-avatar.jpeg?AWSAccessKeyId=AKIATHBKT3IB42P7VYGB&Expires=1760145113&Signature=vHv0cBI9zrBLOO5sZB1Nt0KJxFw%3D
+1:44:45 a.m.	Información	PDF guardado: 20251003_pipol pay_CDA6DG4C62TT8401.pdf
+1:44:46 a.m.	Información	No se pudo descargar imagen (403): https://kanto-us-west-2-private-file-manager-shaymin.s3.us-west-2.amazonaws.com/shaymin/9fe408b2-15a7-43d5-8eb8-61d76e7d0a09/9fe408b2-15a7-43d5-8eb8-61d76e7d0a09-avatar.jpeg?AWSAccessKeyId=AKIATHBKT3IB42P7VYGB&Expires=1760131559&Signature=DOgMw1b4yeVfOMcUzG6qTXe%2Ffvw%3D
+1:44:49 a.m.	Información	PDF guardado: 20251003_facebank international_1BE1RH4CBDWH9B4D.pdf
+1:44:50 a.m.	Información	No se pudo descargar imagen (403): https://kanto-us-west-2-private-file-manager-shaymin.s3.us-west-2.amazonaws.com/shaymin/99fee2a8-e83c-47e3-a42e-30b97e4dbc28/99fee2a8-e83c-47e3-a42e-30b97e4dbc28-avatar.jpeg?AWSAccessKeyId=AKIATHBKT3IB42P7VYGB&Expires=1760116707&Signature=q9LcTMN%2FKnrYTGWmIouHfb1K%2BQU%3D
+1:44:52 a.m.	Información	PDF guardado: 20251003_dukascopy usd_AAB8YB487ETM8243.pdf
+1:44:52 a.m.	Información	Correo sin datos reconocibles, omitido. ASUNTO: "agregar facebank international completado"
+1:44:54 a.m.	Información	No se pudo descargar imagen (403): https://kanto-us-west-2-private-file-manager-shaymin.s3.us-west-2.amazonaws.com/shaymin/a80f6ca5-55ca-49d0-84d3-51b9ee3d75be/a80f6ca5-55ca-49d0-84d3-51b9ee3d75be-avatar.jpeg?AWSAccessKeyId=AKIATHBKT3IB42P7VYGB&Expires=1759946487&Signature=E%2BraaDQKmvDqzrV6mHGcaQZ5d3o%3D
+1:44:56 a.m.	Información	PDF guardado: 20251001_wise usd_255DJU49BCZCBDAA.pdf
+1:44:57 a.m.	Información	No se pudo descargar imagen (403): https://kanto-us-west-2-private-file-manager-shaymin.s3.us-west-2.amazonaws.com/shaymin/6f8243ed-0a6b-4517-9033-0839276945c1/6f8243ed-0a6b-4517-9033-0839276945c1-avatar.jpeg?AWSAccessKeyId=AKIATHBKT3IB42P7VYGB&Expires=1759941363&Signature=dPPc0qefpamS%2F12O170TrD4TWog%3D
+1:44:59 a.m.	Información	PDF guardado: 20251001_facebank international_E6A6VU4354ZJB67B.pdf
+1:45:00 a.m.	Información	No se pudo descargar imagen (403): https://kanto-us-west-2-private-file-manager-shaymin.s3.us-west-2.amazonaws.com/shaymin/0ca634aa-9f74-49c2-9fc5-8b3fcb80ccd4/0ca634aa-9f74-49c2-9fc5-8b3fcb80ccd4-avatar.jpeg?AWSAccessKeyId=AKIATHBKT3IB42P7VYGB&Expires=1759963644&Signature=9spUBDKdA0z8Wi8rkECcfgpXU8E%3D
+1:45:03 a.m.	Información	PDF guardado: 20251001_facebank international_D225HZ4E77DB8432.pdf
