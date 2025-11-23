@@ -41,11 +41,11 @@ function procesarCorreosAirtm() {
 
       const idTransaccion = extraerDato(cuerpo, /ID de la transacción[\s\S]*?([A-Z0-9]+)/i);
 
-      if (!metodo && !fondosEnviados && !fondosRecibidos) {
-        Logger.log("Correo sin datos reconocibles, omitido.");
-        hilo.addLabel(etiqueta);
-        return;
-      }
+     if (!metodo && !fondosEnviados && !fondosRecibidos) {
+  Logger.log(`Correo sin datos reconocibles, omitido. ASUNTO: "${asunto}"`);
+  hilo.addLabel(etiqueta);
+  return;
+}
 
       // ===== INSERTAR NUEVA FILA =====
       const nuevaFila = hoja.getLastRow() + 1;
@@ -78,7 +78,9 @@ function procesarCorreosAirtm() {
 
       // ===== EXPORTAR PDF =====
       try {
-        const nombrePDF = `${fechaEnvio}_${asunto}_${idTransaccion}`.replace(/[^\w\s.-]/g, "_");
+      const fechaFormateada = formatearFechaAAAAMMDD(fechaEnvio);
+      const asuntoLimpio = limpiarAsuntoParaPDF(asunto);
+      const nombrePDF = `${fechaFormateada}_${asuntoLimpio}_${idTransaccion}.pdf`;
         guardarCorreoComoPDFConImagenes(msg, nombrePDF);
         Logger.log("PDF guardado: " + nombrePDF);
       } catch (e) {
@@ -252,4 +254,29 @@ function guardarCorreoComoPDFConImagenes(msg, nombrePDF) {
 // Helper: escapar texto para usar en RegExp
 function escapeRegExp(string) {
   return String(string).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+// ==== FECHA FORMATO YYYYMMDD ====
+function formatearFechaAAAAMMDD(fechaTexto) {
+  try {
+    const fecha = new Date(fechaTexto.replace(" de ", " ").replace("de ", ""));
+    const yyyy = fecha.getFullYear();
+    const mm = ("0" + (fecha.getMonth() + 1)).slice(-2);
+    const dd = ("0" + fecha.getDate()).slice(-2);
+    return `${yyyy}${mm}${dd}`;
+  } catch (e) {
+    return "00000000";
+  }
+}
+
+//
+// ==== LIMPIAR ASUNTO PARA NOMBRE DEL PDF ====
+function limpiarAsuntoParaPDF(asunto) {
+  return asunto
+    .toLowerCase()
+    .replace("retiro", "")
+    .replace("agregar", "")
+    .replace("completado", "")
+    .trim()
+    .replace(/\s+/g, " ");
 }
