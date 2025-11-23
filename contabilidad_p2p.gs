@@ -1,3 +1,10 @@
+function extraerPrimeroQueCoincida(texto, listaRegex) {
+  for (const rgx of listaRegex) {
+    const m = texto.match(rgx);
+    if (m && m[1]) return m[1].trim();
+  }
+  return "";
+}
 function procesarCorreosAirtm() {
   const SHEET_ID = '1T18Xsdjp8CGMEiKB0nwlR6IwC3ccrerv196C96_PjkY';
   const SHEET_NAME = 'air_usd_c_p';
@@ -29,8 +36,15 @@ function procesarCorreosAirtm() {
       const metodo = extraerDato(cuerpo, /Método de pago[\s\S]*?([A-Za-z0-9\s]+)\s*(Estado|ID)/i);
       const estado = extraerDato(cuerpo, /Estado[\s\S]*?([A-Za-z]+)\s*(ID|Fondos)/i);
       const idConfirmacion = extraerDato(cuerpo, /ID de confirmación[\s\S]*?([0-9A-Z]+)/i);
-      const fondosEnviados = extraerDato(cuerpo, /Fondos enviados[\s\S]*?(\$[0-9.,\s]+USDC)/i);
-      const fondosRecibidos = extraerDato(cuerpo, /Fondos recibidos[\s\S]*?(\$[0-9.,\s]+[A-Z]{3})/i);
+      let fondosEnviados = extraerPrimeroQueCoincida(cuerpo, [
+  /Fondos enviados[\s\S]*?(\$?[0-9.,\s]+[A-Z]{3})/i,
+  /Fondos a enviar[\s\S]*?(\$?[0-9.,\s]+[A-Z]{3})/i
+]);
+
+let fondosRecibidos = extraerPrimeroQueCoincida(cuerpo, [
+  /Fondos recibidos[\s\S]*?(\$?[0-9.,\s]+[A-Z]{3})/i,
+  /Fondos a recibir[\s\S]*?(\$?[0-9.,\s]+[A-Z]{3})/i
+]);
       const tipoCambio = extraerDato(cuerpo, /Tipo de cambio neto[\s\S]*?(\$[0-9.,\sA-Z=]+)/i);
 
       // Fecha robusta
